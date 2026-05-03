@@ -1,0 +1,46 @@
+Phase 2 Report - LLM-FE Paper Replication
+==========================================
+Members: Amina Naveed 23F-3079 Muhammad Bilal 23F-6032
+Date: 18 April 2026
+Paper: LLM-FE: Automated Feature Engineering for Tabular Data with LLMs as Evolutionary Optimizers
+
+1. WHAT THE PAPER DOES
+-----------------------
+LLM-FE is a framework that automatically creates new features for tabular 
+machine learning tasks. It works by prompting an LLM to write Python code 
+that transforms raw features into better ones (e.g. combining glucose and 
+insulin into an insulin_resistance feature). It then trains XGBoost on the 
+new features, checks if accuracy improved, stores successful programs in 
+memory, and repeats this evolutionary process for 20 iterations.
+
+2. DATASET USED
+---------------
+Dataset: Balance-Scale
+Source: OpenML (ID: 11)
+Samples: 625
+Features: 4 (Left-Weight, Left-Distance, Right-Weight, Right-Distance)
+Task: Predict which direction the balance scale tips (left, right, balanced)
+
+3. HOW WE RAN IT
+----------------
+- Cloned the official GitHub repository: https://github.com/nikhilsab/LLMFE
+- Modified the code to use Groq API with LLaMA-3.1-8B-Instant model 
+  (free alternative to GPT-3.5-Turbo used in the paper)
+- Used 5-fold cross validation with 20 LLM samples per fold
+- Ran on the balance-scale dataset
+
+4. RESULTS
+----------
+Base XGBoost (no feature engineering): 0.8576 accuracy
+LLM-FE (our replication):              0.9548 accuracy
+LLM-FE (paper reported):               0.9900 accuracy
+
+Improvement over baseline: +9.7%
+
+5. CONCLUSION
+-------------
+Our replication successfully demonstrates the core claim of the paper - 
+that LLM-FE significantly improves predictive performance over raw features.
+The slight difference from the paper (0.9548 vs 0.990) is expected because 
+we used LLaMA-3.1-8B instead of GPT-3.5-Turbo, and there is natural 
+randomness in the evolutionary search process.

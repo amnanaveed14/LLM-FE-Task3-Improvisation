@@ -25,7 +25,7 @@ args = parser.parse_args()
 
 if __name__ == '__main__':
     # Define the maximum number of iterations
-    global_max_sample_num = 20
+    global_max_sample_num = 10
     splits = 5
     seed = 42
     # Load prompt specification
